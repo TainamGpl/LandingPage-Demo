@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulação de Compra — LandingPage Store</title>
+
+  <!-- CSS Genérico do Sistema -->
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <!-- CSS Específico do Checkout -->
+  <link rel="stylesheet" href="../assets/css/checkout.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" />
+
+</head>
+<body>
+
+  <!-- ======================== HEAD ======================== -->
+  <header class="checkout-header">
+    <div class="container">
+      <a href="../index.html" class="navbar__logo" style="display:flex; align-items:center; gap:0.5rem;">
+        <div class="navbar__logo-icon" style="width:32px; height:32px; background:var(--color-primary); color:#000; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:bold;">⚡</div>
+        <span class="navbar__logo-text" style="font-weight:700; font-size:1.25rem;">Landing<span>Store</span></span>
+      </a>
+      <a href="../index.html" style="color:var(--color-text-dim); text-decoration:none; font-size:0.9rem;">Voltar</a>
+    </div>
+  </header>
+
+  <!-- ======================== MAIN ======================== -->
+  <main class="checkout-container">
+
+    <!-- Seção: FORMULARIO -->
+    <section class="checkout-form-section">
+      <div class="step-card" role="note" style="border-color:#00d4aa; background:rgba(0,212,170,0.08);">
+        <h1 class="step-title">Demonstração interativa</h1>
+        <p>Use somente dados fictícios. Tudo acontece localmente neste navegador: não há backend, conta, cobrança ou pagamento real, e nenhum dado é enviado.</p>
+      </div>
+      
+      <div class="step-card">
+        <h2 class="step-title"><span>1</span> Dados fictícios</h2>
+        <div class="form-grid">
+          <div class="form-group form-group-full">
+            <label for="cx-name">Nome Completo</label>
+            <input type="text" id="cx-name" class="form-input" placeholder="João da Silva" required>
+          </div>
+          <div class="form-group form-group-full">
+            <label for="cx-email">E-mail fictício</label>
+            <input type="email" id="cx-email" class="form-input" placeholder="demo@example.com" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card" id="step-payment">
+        <h2 class="step-title"><span>2</span> Cenário da simulação</h2>
+        
+        <div class="payment-methods">
+          <label class="payment-method" data-method="credit_card">
+            <input type="radio" name="paymentType" value="credit_card">
+             💳 Visual de cartão
+          </label>
+          <label class="payment-method active" data-method="pix">
+            <input type="radio" name="paymentType" value="pix" checked>
+             💠 Visual de Pix
+          </label>
+        </div>
+
+        <div style="background: rgba(0, 212, 170, 0.05); border: 1px solid rgba(0, 212, 170, 0.2); padding: 1.5rem; border-radius: var(--radius-sm); text-align: center;">
+          <h4 style="color:#00d4aa; margin-bottom: 0.5rem;">💠 Interface demonstrativa</h4>
+          <p style="font-size: 0.85rem; color:var(--color-text-dim);">A seleção serve apenas para explorar os estados visuais. Nenhum código bancário é gerado.</p>
+        </div>
+      </div>
+
+      <!-- Container do QR Code Oculto Inicialmente -->
+      <div class="step-card" id="pix-qr-container" style="display: none; border-color: #00d4aa; text-align: center;">
+        <h2 class="step-title" style="justify-content: center; color: #00d4aa;">Prévia visual de QR Code</h2>
+        <p style="color: var(--color-text-dim); margin-bottom: 1.5rem; font-size: 0.95rem;">Elemento fictício para demonstrar o layout. Não use em aplicativo bancário.</p>
+        
+        <div style="background: #fff; padding: 1rem; border-radius: 8px; display: inline-block; margin-bottom: 1rem;">
+          <div id="pix-qr-image" aria-label="Espaço reservado para QR Code fictício" style="width:250px;height:250px;display:grid;place-items:center;color:#111;">QR fictício</div>
+        </div>
+        
+        <div>
+          <label style="font-size: 0.85rem; color:var(--color-text-dim)">Código fictício:</label>
+          <div style="display:flex; gap:0.5rem; justify-content:center; margin-top:0.5rem;">
+            <input type="text" id="pix-copy-paste" class="form-input" style="width: 100%; max-width:400px; text-align:center" readonly />
+            <button type="button" id="btn-copy-pix" class="btn btn--gradient" style="padding: 0 1rem;">Copiar</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Estado visual de conclusão -->
+    <div class="step-card" id="success-screen" style="display: none; border-color: #00d4aa; text-align: center; background: rgba(0,212,170,0.05); margin-top:2rem;">
+      <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+      <h2 class="step-title" style="justify-content: center; color: #00d4aa;">Simulação concluída</h2>
+      <p style="color: var(--color-text); margin-bottom: 1.5rem; font-size: 1rem;">Você explorou o estado final da interface.</p>
+      <p style="color: var(--color-text-dim); font-size: 0.85rem;">Nenhuma compra ou transação foi realizada.</p>
+    </div>
+
+    <!-- Seção: RESUMO DA SIMULAÇÃO -->
+    <aside class="checkout-summary-section">
+      <div class="summary-card">
+        <div class="summary-inner">
+          <h3 class="summary-header">Resumo da simulação</h3>
+          
+          <div class="summary-item">
+            <span id="res-plan-name" style="font-weight: 600;">Plano ...</span>
+            <span id="res-plan-price">R$ 0,00</span>
+          </div>
+          
+          <div class="summary-item" style="color:var(--color-primary);">
+            <span>Desconto</span>
+            <span>R$ 0,00</span>
+          </div>
+
+          <div class="summary-total">
+            <span>Valor ilustrativo</span>
+            <span id="res-plan-total" style="color:var(--color-primary);">R$ 0,00</span>
+          </div>
+
+          <button id="btn-finish-checkout" class="btn btn--gradient" style="width: 100%; justify-content: center; margin-top: 1.5rem; font-size: 1rem;">
+             Simular compra
+          </button>
+
+          <div id="status-message"></div>
+
+          <div class="secure-badge">
+            <span style="font-size: 1.2rem;">🧪</span> Demonstração local, sem backend ou pagamentos reais
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <script src="../assets/js/checkout.js" type="module"></script>
+</body>
+</html>

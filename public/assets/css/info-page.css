@@ -1,0 +1,117 @@
+/* Shared styles for institutional pages linked from the footer */
+
+.info-hero {
+  padding: calc(var(--header-height) + var(--space-16)) 0 var(--space-12);
+  position: relative;
+  overflow: hidden;
+}
+
+.info-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(0, 212, 170, 0.08), transparent 42%),
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.08), transparent 35%);
+  pointer-events: none;
+}
+
+.info-hero__content,
+.info-content {
+  position: relative;
+  z-index: 1;
+}
+
+.info-hero__content p {
+  font-size: var(--font-size-lg);
+  max-width: 62ch;
+}
+
+.info-content {
+  padding-bottom: var(--space-20);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-6);
+}
+
+.info-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7, 1.75rem);
+  box-shadow: var(--shadow-md);
+}
+
+.info-card h2,
+.info-card h3 {
+  margin-bottom: var(--space-4);
+}
+
+.info-card p,
+.info-card li {
+  color: var(--color-text-muted);
+}
+
+.info-card ul,
+.info-card ol {
+  list-style: initial;
+  padding-left: 1.25rem;
+}
+
+.info-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.info-meta {
+  display: inline-flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: var(--space-6);
+}
+
+.info-meta span {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.info-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.info-footer {
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-footer p {
+  max-width: unset;
+}
+
+@media (max-width: 768px) {
+  .info-hero__content p {
+    font-size: var(--font-size-base);
+  }
+
+  .info-actions,
+  .info-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LandingPage Store — Templates profissionais de landing pages que convertem. Designs responsivos, otimizados para SEO e prontos para usar." />
+  <meta name="keywords" content="landing page, templates, conversão, vendas, design profissional" />
+  <meta name="author" content="LandingPage Store" />
+
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LandingPage Store — Templates que Convertem" />
+  <meta property="og:description" content="Crie páginas de captura profissional e aumente suas vendas com designs prontos para usar." />
+  <meta property="og:locale" content="pt_BR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="LandingPage Store" />
+  <meta name="twitter:description" content="Templates profissionais de landing pages que convertem." />
+  <meta name="robots" content="index,follow" />
+
+  <title>LandingPage Store — Templates Profissionais que Convertem</title>
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2300d4aa'/><text y='75' font-size='65' text-anchor='middle' x='50' font-family='system-ui'>⚡</text></svg>" />
+
+  <!-- CSS: Design System -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+
+  <!-- Preconnect Google Fonts (performance) — deve ficar antes dos link de font -->
+  <link rel="stylesheet" href="assets/css/chatbot.css" />
+  <link rel="stylesheet" href="assets/css/checkout.css" />
+  <link rel="stylesheet" href="assets/css/modals.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "LandingPage Store",
+      "description": "Demonstração fictícia de uma loja de templates para portfólio.",
+      "inLanguage": "pt-BR"
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Acessibilidade: Skip to content -->
+  <a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
+
+  <!-- ════════════════════════════════════════════════════════
+       NAVBAR
+       ════════════════════════════════════════════════════════ -->
+  <header role="banner">
+    <nav class="navbar header-animate" aria-label="Navegação principal">
+      <div class="container">
+        <div class="navbar__inner">
+
+          <!-- Logo -->
+          <a href="./index.html" class="navbar__logo" aria-label="LandingPage Store — página inicial">
+            <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+            <span class="navbar__logo-text">Landing<span>Store</span></span>
+          </a>
+
+          <!-- Links desktop -->
+          <ul class="navbar__menu" role="list">
+            <li><a href="#home" class="navbar__link active" aria-current="page">Início</a></li>
+            <li><a href="#features" class="navbar__link">Recursos</a></li>
+            <li><a href="#pricing" class="navbar__link">Planos</a></li>
+            <li><a href="pages/sobre.html" class="navbar__link">Sobre</a></li>
+            <li><a href="pages/contato.html" class="navbar__link">Contato</a></li>
+          </ul>
+
+          <!-- CTA desktop -->
+          <div class="navbar__cta">
+            <button type="button" id="nav-login-btn" class="btn btn--ghost btn--sm navbar__cta-inline">
+              Entrar
+            </button>
+            <a href="#pricing" class="btn btn--primary btn--sm">
+              Ver Planos
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Botão hamburguer mobile -->
+          <button
+            class="navbar__toggle"
+            id="nav-toggle"
+            aria-label="Abrir menu de navegação"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+          >
+            <span class="navbar__toggle-line" aria-hidden="true"></span>
+            <span class="navbar__toggle-line" aria-hidden="true"></span>
+            <span class="navbar__toggle-line" aria-hidden="true"></span>
+          </button>
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav__overlay" id="mobile-overlay" aria-hidden="true"></div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menu mobile" aria-hidden="true">
+    <a href="#home"              class="mobile-nav__link active">🏠 Início</a>
+    <a href="#features"         class="mobile-nav__link">✨ Recursos</a>
+    <a href="#pricing"          class="mobile-nav__link">💳 Planos</a>
+    <a href="pages/sobre.html"  class="mobile-nav__link">👥 Sobre Nós</a>
+    <a href="pages/servicos.html" class="mobile-nav__link">🛠️ Serviços</a>
+    <a href="pages/contato.html" class="mobile-nav__link">📩 Contato</a>
+    <div class="mobile-nav__cta">
+      <a href="#pricing" class="btn btn--gradient btn--full btn--centered">
+        Começar Agora →
+      </a>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════════════════════
+       CONTEÚDO PRINCIPAL
+       ════════════════════════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- ── HERO ────────────────────────────────────────────── -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+
+      <!-- Canvas de partículas interativas -->
+      <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+      <!-- Glows de fundo -->
+      <div class="hero__glow hero__glow--primary" aria-hidden="true"></div>
+      <div class="hero__glow hero__glow--accent" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero__content">
+
+          <!-- Badge -->
+          <div class="hero__badge hero-badge-animate">
+            <span class="badge">
+              <span class="dot" aria-hidden="true"></span>
+              Projeto fictício de portfólio
+            </span>
+          </div>
+
+          <!-- Título principal -->
+          <h1 id="hero-heading" class="hero__title hero-title-animate">
+            Landing Pages<br />
+            <span class="shimmer-text" id="hero-typewriter">que Convertem de Verdade</span>
+          </h1>
+
+          <!-- Subtítulo -->
+          <p class="hero__subtitle hero-subtitle-animate">
+            Demonstração responsiva de uma vitrine, com planos, navegação e interações locais.
+            Não há backend, atendimento, compra ou pagamento real.
+          </p>
+
+          <!-- Botões de ação -->
+          <div class="hero__actions hero-cta-animate">
+            <a href="#pricing" class="btn btn--gradient btn--lg">
+              Ver Planos e Preços
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="pages/servicos.html" class="btn btn--ghost btn--lg">
+              Ver Templates
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Indicador visual de scroll -->
+      <div class="hero__scroll" aria-hidden="true">
+        <span class="hero__scroll-text">scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+
+    </section>
+
+    <!-- ── ESTATÍSTICAS ──────────────────────────────────── -->
+    <section class="stats" aria-label="Nossos números">
+      <div class="container">
+        <div class="stats__grid">
+
+          <div class="stat-card reveal">
+            <span class="stat-card__number gradient-text"
+              data-count="1200" data-suffix="+"
+              aria-label="1.200 como número ilustrativo">0+</span>
+            <p class="stat-card__label">Dado Fictício</p>
+          </div>
+
+          <div class="stat-card reveal">
+            <span class="stat-card__number gradient-text"
+              data-count="98" data-suffix="%"
+              aria-label="98 por cento como número ilustrativo">0%</span>
+            <p class="stat-card__label">Métrica Ilustrativa</p>
+          </div>
+
+          <div class="stat-card reveal">
+            <span class="stat-card__number gradient-text"
+              data-count="45" data-suffix="+"
+              aria-label="Mais de 45 cards demonstrativos">0+</span>
+            <p class="stat-card__label">Cards Demonstrativos</p>
+          </div>
+
+          <div class="stat-card reveal">
+            <span class="stat-card__number gradient-text"
+              data-count="24" data-suffix="/7"
+              data-duration="600"
+              aria-label="24 por 7 como exemplo visual">0</span>
+            <p class="stat-card__label">Exemplo Visual</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RECURSOS / FEATURES ──────────────────────────── -->
+    <section class="section features" id="features" aria-labelledby="features-heading">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <span class="badge">
+            <span class="dot" aria-hidden="true"></span>
+            Recursos
+          </span>
+          <h2 id="features-heading">Por que escolher<br />nossas landing pages?</h2>
+          <div class="divider" aria-hidden="true"></div>
+          <p>Tudo o que você precisa para lançar páginas de alta conversão — sem complicação.</p>
+        </div>
+
+        <div class="features__grid reveal-group">
+
+          <article class="card reveal" aria-labelledby="feat-1">
+            <div class="card__icon" aria-hidden="true">📱</div>
+            <h3 class="card__title" id="feat-1">Design Responsivo</h3>
+            <p class="card__text">Funciona perfeitamente em todos os dispositivos: mobile, tablet e desktop. Testado em mais de 20 resoluções diferentes.</p>
+          </article>
+
+          <article class="card reveal" aria-labelledby="feat-2">
+            <div class="card__icon" aria-hidden="true">🎯</div>
+            <h3 class="card__title" id="feat-2">Otimizado para Conversão</h3>
+            <p class="card__text">Layouts baseados em dados e psicologia de UX para maximizar suas taxas de conversão e gerar mais leads qualificados.</p>
+          </article>
+
+          <article class="card reveal" aria-labelledby="feat-3">
+            <div class="card__icon" aria-hidden="true">⚡</div>
+            <h3 class="card__title" id="feat-3">Performance Máxima</h3>
+            <p class="card__text">Código limpo e otimizado com score 90+ no Google PageSpeed. Carregamento ultrarrápido que melhora seu ranking.</p>
+          </article>
+
+          <article class="card reveal" aria-labelledby="feat-4">
+            <div class="card__icon" aria-hidden="true">🔍</div>
+            <h3 class="card__title" id="feat-4">SEO Friendly</h3>
+            <p class="card__text">Estrutura semântica HTML5, meta tags completas e Schema.org implementado para melhor posicionamento orgânico.</p>
+          </article>
+
+          <article class="card reveal" aria-labelledby="feat-5">
+            <div class="card__icon" aria-hidden="true">🎨</div>
+            <h3 class="card__title" id="feat-5">Fácil Personalização</h3>
+            <p class="card__text">Edite cores, fontes e textos em minutos usando variáveis CSS. Sem precisar de conhecimento técnico avançado.</p>
+          </article>
+
+          <article class="card reveal" aria-labelledby="feat-6">
+            <div class="card__icon" aria-hidden="true">🔄</div>
+            <h3 class="card__title" id="feat-6">Estados Interativos</h3>
+            <p class="card__text">Explore navegação, seleção de planos e feedbacks locais sem enviar dados.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PLANOS / PRICING ──────────────────────────────── -->
+    <section class="section section--alt" id="pricing" aria-labelledby="pricing-heading">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <span class="badge">
+            <span class="dot" aria-hidden="true"></span>
+            Preços
+          </span>
+          <h2 id="pricing-heading">Escolha o plano<br />ideal para você</h2>
+          <div class="divider" aria-hidden="true"></div>
+          <p>Invista uma vez e tenha acesso a templates profissionais para sempre.</p>
+        </div>
+
+        <div class="pricing__grid reveal-group">
+
+          <!-- Plano Básico -->
+          <div class="pricing-card reveal" aria-labelledby="plan-basic">
+            <p class="pricing-card__plan">Básico</p>
+            <h3 class="pricing-card__price" id="plan-basic">
+              <span class="pricing-card__currency">R$</span>
+              <span class="pricing-card__amount">49</span>
+              <span class="pricing-card__period">,90</span>
+            </h3>
+            <p class="pricing-card__description">Uma landing page personalizável, perfeita para quem está começando.</p>
+
+            <ul class="pricing-features" role="list">
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>1 template premium</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Design responsivo</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Atualizações gratuitas</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Formulário demonstrativo</span>
+              </li>
+            </ul>
+
+            <a href="pages/contato.html" class="btn btn--secondary" aria-label="Simular plano Básico com valor ilustrativo de R$49,90">
+              Simular Básico
+            </a>
+          </div>
+
+          <!-- Plano Profissional (destaque) -->
+          <div class="pricing-card pricing-card--featured reveal" aria-labelledby="plan-pro">
+            <span class="pricing-card__badge" aria-label="Mais popular">⭐ Popular</span>
+            <p class="pricing-card__plan">Profissional</p>
+            <h3 class="pricing-card__price" id="plan-pro">
+              <span class="pricing-card__currency">R$</span>
+              <span class="pricing-card__amount">99</span>
+              <span class="pricing-card__period">,90</span>
+            </h3>
+            <p class="pricing-card__description">Três landing pages + bônus exclusivos para quem quer crescer rápido.</p>
+
+            <ul class="pricing-features" role="list">
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>3 templates premium</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Design responsivo</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Atualizações gratuitas</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Estados interativos adicionais</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Integração email marketing</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Bônus: Guia de Conversão</span>
+              </li>
+            </ul>
+
+            <a href="pages/contato.html" class="btn btn--gradient" aria-label="Simular plano Profissional com valor ilustrativo de R$99,90">
+              Simular Profissional
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Plano Empresarial -->
+          <div class="pricing-card reveal" aria-labelledby="plan-biz">
+            <p class="pricing-card__plan">Empresarial</p>
+            <h3 class="pricing-card__price" id="plan-biz">
+              <span class="pricing-card__currency">R$</span>
+              <span class="pricing-card__amount">199</span>
+              <span class="pricing-card__period">,90</span>
+            </h3>
+            <p class="pricing-card__description">Exemplo visual de pacote com dez templates e recursos ilustrativos.</p>
+
+            <ul class="pricing-features" role="list">
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>10 templates premium</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Design responsivo</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Atualizações gratuitas</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Componentes responsivos</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Consultoria de conversão</span>
+              </li>
+              <li class="pricing-feature">
+                <span class="pricing-feature__icon" aria-hidden="true">✓</span>
+                <span>Integrações avançadas</span>
+              </li>
+            </ul>
+
+            <a href="pages/contato.html" class="btn btn--secondary" aria-label="Simular plano Empresarial com valor ilustrativo de R$199,90">
+              Simular Empresarial
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DEPOIMENTOS ───────────────────────────────────── -->
+    <section class="section" aria-labelledby="testimonials-heading">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <span class="badge">
+            <span class="dot" aria-hidden="true"></span>
+            Depoimentos
+          </span>
+          <h2 id="testimonials-heading">Depoimentos fictícios para demonstrar o layout</h2>
+          <div class="divider" aria-hidden="true"></div>
+        </div>
+
+        <div class="testimonials__grid reveal-group">
+
+          <article class="testimonial-card reveal" aria-labelledby="test-1-name">
+            <div class="testimonial-card__stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote class="testimonial-card__text">
+              "Exemplo de depoimento: este conteúdo é fictício e existe somente para apresentar o componente visual."
+            </blockquote>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar" aria-hidden="true">MR</div>
+              <div>
+                <p class="testimonial-card__name" id="test-1-name">Marcos Rodrigues</p>
+                <p class="testimonial-card__role">Empreendedor Digital</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card reveal" aria-labelledby="test-2-name">
+            <div class="testimonial-card__stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote class="testimonial-card__text">
+              "Exemplo de depoimento: uma vitrine pode destacar benefícios e resultados de forma clara."
+            </blockquote>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar" aria-hidden="true">AC</div>
+              <div>
+                <p class="testimonial-card__name" id="test-2-name">Ana Clara Souza</p>
+                <p class="testimonial-card__role">Coach de Negócios</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card reveal" aria-labelledby="test-3-name">
+            <div class="testimonial-card__stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote class="testimonial-card__text">
+              "Exemplo de depoimento: o card demonstra hierarquia visual, avatar e avaliação."
+            </blockquote>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar" aria-hidden="true">FP</div>
+              <div>
+                <p class="testimonial-card__name" id="test-3-name">Felipe Pinheiro</p>
+                <p class="testimonial-card__role">Gestor de Marketing</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA FINAL ─────────────────────────────────────── -->
+    <section class="section cta-section" aria-labelledby="cta-heading">
+      <div class="cta-section__glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="cta-section__content reveal reveal--scale">
+          <span class="badge badge--spaced">
+            <span class="dot" aria-hidden="true"></span>
+            Oferta limitada
+          </span>
+          <h2 class="cta-section__title" id="cta-heading">
+            Pronto para aumentar<br />suas vendas?
+          </h2>
+          <p class="cta-section__text">
+            Escolha um plano fictício para explorar o fluxo demonstrativo.
+            Nenhum dado sai do navegador e nenhuma transação é realizada.
+          </p>
+          <div class="cta-section__actions">
+            <a href="#pricing" class="btn btn--gradient btn--lg">
+              Começar Agora
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="pages/contato.html" class="btn btn--ghost btn--lg">
+              Falar Conosco
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+
+        <!-- Marca -->
+        <div>
+          <a href="./index.html" class="navbar__logo footer__brand-logo">
+            <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+            <span class="navbar__logo-text">Landing<span>Store</span></span>
+          </a>
+          <p class="footer__brand-desc">
+            Projeto fictício de portfólio para demonstrar uma experiência web completa.
+          </p>
+          <div class="footer__social" aria-label="Redes sociais">
+            <a href="pages/contato.html#email" class="footer__social-link" aria-label="Contato por e-mail">f</a>
+            <a href="pages/contato.html#instagram" class="footer__social-link" aria-label="Instagram da LandingPage Store">ig</a>
+            <a href="pages/contato.html#whatsapp" class="footer__social-link" aria-label="WhatsApp da LandingPage Store">W</a>
+            <a href="pages/blog.html" class="footer__social-link" aria-label="Conteúdo em vídeo e novidades">▶</a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <nav aria-label="Links do produto">
+          <h3 class="footer__heading">Produto</h3>
+          <ul class="footer__links" role="list">
+            <li><a href="pages/servicos.html" class="footer__link">→ Templates</a></li>
+            <li><a href="#pricing" class="footer__link">→ Planos e Preços</a></li>
+            <li><a href="#features" class="footer__link">→ Recursos</a></li>
+            <li><a href="pages/novidades.html" class="footer__link">→ Novidades</a></li>
+          </ul>
+        </nav>
+
+        <!-- Empresa -->
+        <nav aria-label="Links da empresa">
+          <h3 class="footer__heading">Empresa</h3>
+          <ul class="footer__links" role="list">
+            <li><a href="pages/sobre.html" class="footer__link">→ Sobre Nós</a></li>
+            <li><a href="pages/contato.html" class="footer__link">→ Contato</a></li>
+            <li><a href="pages/blog.html" class="footer__link">→ Blog</a></li>
+            <li><a href="pages/parceiros.html" class="footer__link">→ Parceiros</a></li>
+          </ul>
+        </nav>
+
+        <!-- Suporte -->
+        <nav aria-label="Links de suporte">
+          <h3 class="footer__heading">Suporte</h3>
+          <ul class="footer__links" role="list">
+            <li><a href="pages/ajuda.html" class="footer__link">→ Central de Ajuda</a></li>
+            <li><a href="pages/contato.html" class="footer__link">→ Fale Conosco</a></li>
+            <li><a href="pages/privacidade.html" class="footer__link">→ Política de Privacidade</a></li>
+            <li><a href="pages/termos.html" class="footer__link">→ Termos de Uso</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <!-- Rodapé inferior -->
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          &copy; 2026 LandingPage Store. Todos os direitos reservados.
+        </p>
+        <div class="footer__bottom-links">
+          <a href="pages/privacidade.html" class="footer__bottom-link">Privacidade</a>
+          <a href="pages/termos.html" class="footer__bottom-link">Termos</a>
+          <a href="pages/cookies.html" class="footer__bottom-link">Cookies</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════════════════════
+       MODALS (LOGIN & PREÇOS)
+       ════════════════════════════════════════════════════════ -->
+  
+  <!-- Modal de Autenticação -->
+  <div id="login-modal" class="modal-overlay" aria-hidden="true" role="presentation">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title" tabindex="-1">
+      <button type="button" class="modal-close" aria-label="Fechar Modal">×</button>
+      
+      <div class="modal-header">
+        <h3 class="modal-title" id="auth-modal-title">Bem-vindo(a)</h3>
+        <p class="modal-subtitle">Simulação local de acesso, sem conta real.</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" id="tab-login">Entrar</button>
+        <button type="button" class="auth-tab" id="tab-register">Cadastrar</button>
+      </div>
+
+      <form id="auth-form" class="modal-form">
+        <div class="form-group is-hidden" id="group-name">
+          <label for="auth-name">Nome Completo</label>
+          <input type="text" id="auth-name" class="form-input" placeholder="Seu nome" />
+        </div>
+        <div class="form-group">
+          <label for="auth-email">E-mail</label>
+          <input type="email" id="auth-email" class="form-input" placeholder="voce@exemplo.com" required />
+        </div>
+        <div id="auth-message" class="form-message" aria-live="polite"></div>
+        
+        <button type="submit" id="auth-submit-btn" class="btn btn--gradient modal-form__submit">
+          Entrar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de Checkout removido (movido para pages/checkout.html) -->
+
+  <!-- ════════════════════════════════════════════════════════
+       SCRIPTS (ao final do body para performance)
+       ════════════════════════════════════════════════════════ -->
+  <script src="assets/js/particles.js" defer></script>
+  <script src="assets/js/chatbot.js" defer></script>
+  <script type="module" src="assets/js/main.js" defer></script>
+
+  <!--End of Tawk.to Script-->
+</body>
+</html>

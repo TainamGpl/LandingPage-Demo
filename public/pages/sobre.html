@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Conheça a narrativa fictícia criada para a demonstração LandingPage Store." />
+  <title>Sobre Nós — LandingPage Store</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2300d4aa'/><text y='75' font-size='65' text-anchor='middle' x='50' font-family='system-ui'>⚡</text></svg>" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/chatbot.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" />
+
+  <style>
+    /* Estilos específicos da página Sobre */
+    .about-hero {
+      padding: calc(var(--header-height) + var(--space-16)) 0 var(--space-20);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero__glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center top, rgba(0,212,170,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .about-hero h1 {
+      margin-bottom: var(--space-6);
+    }
+    .about-hero p {
+      font-size: var(--font-size-lg);
+      max-width: 60ch;
+      margin: 0 auto var(--space-10);
+    }
+
+    /* Timeline de história */
+    .timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-primary), var(--color-accent), transparent);
+    }
+    .timeline-item {
+      display: flex;
+      gap: var(--space-6);
+      padding-bottom: var(--space-10);
+      position: relative;
+    }
+    .timeline-item__dot {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--color-primary-glow);
+      border: 2px solid var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-item__year {
+      font-size: var(--font-size-xs);
+      color: var(--color-primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-2);
+    }
+    .timeline-item__title {
+      font-size: var(--font-size-lg);
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: var(--space-2);
+    }
+    .timeline-item__text {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* Grid de valores */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-6);
+    }
+
+    /* Team cards */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-6);
+    }
+    .team-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      text-align: center;
+      transition: all var(--transition-bounce);
+    }
+    .team-card:hover {
+      border-color: var(--color-border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-primary);
+    }
+    .team-card__avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto var(--space-4);
+      font-weight: 900;
+      color: #0a0a0f;
+    }
+    .team-card__name {
+      font-size: var(--font-size-lg);
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: var(--space-1);
+    }
+    .team-card__role {
+      font-size: var(--font-size-sm);
+      color: var(--color-primary);
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+    }
+    .team-card__bio {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      max-width: unset;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
+
+  <!-- NAVBAR -->
+  <header role="banner">
+    <nav class="navbar header-animate" aria-label="Navegação principal">
+      <div class="container">
+        <div class="navbar__inner">
+          <a href="../index.html" class="navbar__logo" aria-label="LandingPage Store — página inicial">
+            <div class="navbar__logo-icon" aria-hidden="true">⚡</div>
+            <span class="navbar__logo-text">Landing<span>Store</span></span>
+          </a>
+          <ul class="navbar__menu" role="list">
+            <li><a href="../index.html" class="navbar__link">Início</a></li>
+            <li><a href="../index.html#features" class="navbar__link">Recursos</a></li>
+            <li><a href="../index.html#pricing" class="navbar__link">Planos</a></li>
+            <li><a href="sobre.html" class="navbar__link active" aria-current="page">Sobre</a></li>
+            <li><a href="contato.html" class="navbar__link">Contato</a></li>
+          </ul>
+          <div class="navbar__cta">
+            <a href="../index.html#pricing" class="btn btn--primary btn--sm">Ver Planos →</a>
+          </div>
+          <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <span class="navbar__toggle-line"></span>
+            <span class="navbar__toggle-line"></span>
+            <span class="navbar__toggle-line"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="mobile-nav__overlay" id="mobile-overlay"></div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menu mobile">
+    <a href="../index.html"         class="mobile-nav__link">🏠 Início</a>
+    <a href="../index.html#pricing" class="mobile-nav__link">💳 Planos</a>
+    <a href="sobre.html"            class="mobile-nav__link active">👥 Sobre Nós</a>
+    <a href="servicos.html"         class="mobile-nav__link">🛠️ Serviços</a>
+    <a href="contato.html"          class="mobile-nav__link">📩 Contato</a>
+    <div class="mobile-nav__cta">
+      <a href="../index.html#pricing" class="btn btn--gradient" style="width:100%;justify-content:center;">Começar Agora →</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO DA PÁGINA -->
+    <section class="about-hero">
+      <div class="about-hero__glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="hero-badge-animate">
+          <span class="badge"><span class="dot"></span>Narrativa fictícia</span>
+        </div>
+        <h1 class="hero-title-animate">
+          Criados por empreendedores,<br />
+          <span class="shimmer-text">para empreendedores</span>
+        </h1>
+        <p class="hero-subtitle-animate">
+          Nascemos da frustração de não encontrar templates profissionais acessíveis no Brasil.
+          Hoje ajudamos mais de 1.200 negócios a crescerem online.
+        </p>
+      </div>
+    </section>
+
+    <!-- MISSÃO E VISÃO -->
+    <section class="section" style="background: var(--color-bg-secondary);">
+      <div class="container">
+        <div class="values-grid">
+          <div class="card reveal">
+            <div class="card__icon">🎯</div>
+            <h2 class="card__title">Nossa Missão</h2>
+            <p class="card__text">Democratizar o acesso a designs profissionais de alta conversão para empreendedores de todos os portes, sem precisar de uma agência cara.</p>
+          </div>
+          <div class="card reveal">
+            <div class="card__icon">🔭</div>
+            <h2 class="card__title">Nossa Visão</h2>
+            <p class="card__text">Demonstrar como uma página institucional pode comunicar visão, qualidade e performance.</p>
+          </div>
+          <div class="card reveal">
+            <div class="card__icon">🤝</div>
+            <h2 class="card__title">Nossos Valores</h2>
+            <p class="card__text">Clareza visual, responsividade e transparência sobre o caráter fictício desta demonstração.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="badge"><span class="dot"></span>Trajetória</span>
+          <h2>Linha do tempo ilustrativa</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="timeline-item__dot">🌱</div>
+            <div>
+              <p class="timeline-item__year">2022</p>
+              <h3 class="timeline-item__title">O começo</h3>
+              <p class="timeline-item__text">Criamos nosso primeiro template por necessidade própria — e percebemos que muitos empreendedores enfrentavam o mesmo problema.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-item__dot">🚀</div>
+            <div>
+              <p class="timeline-item__year">2023</p>
+              <h3 class="timeline-item__title">Primeiro lançamento</h3>
+              <p class="timeline-item__text">Marco fictício criado para demonstrar a composição visual de uma linha do tempo.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-item__dot">📈</div>
+            <div>
+              <p class="timeline-item__year">2024</p>
+              <h3 class="timeline-item__title">Crescimento acelerado</h3>
+              <p class="timeline-item__text">Exemplo fictício de expansão usado somente como conteúdo do componente.</p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-item__dot">⭐</div>
+            <div>
+              <p class="timeline-item__year">2026</p>
+              <h3 class="timeline-item__title">Vitrine completa</h3>
+              <p class="timeline-item__text">Conclusão ilustrativa da narrativa do projeto, sem representar atividade comercial real.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EQUIPE -->
+    <section class="section" style="background: var(--color-bg-secondary);">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="badge"><span class="dot"></span>Personagens</span>
+          <h2>Equipe fictícia para demonstrar os cards</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="team-grid reveal-group">
+          <div class="team-card reveal">
+            <div class="team-card__avatar">TS</div>
+            <h3 class="team-card__name">Taina Silva</h3>
+            <p class="team-card__role">Fundadora & CEO</p>
+            <p class="team-card__bio">Designer UX com 8 anos de experiência. Apaixonada por converter usuários em clientes.</p>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-card__avatar">RC</div>
+            <h3 class="team-card__name">Rafael Costa</h3>
+            <p class="team-card__role">Dev Frontend</p>
+            <p class="team-card__bio">Especialista em performance web e acessibilidade. Garante que todo template carregue na velocidade da luz.</p>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-card__avatar">AM</div>
+            <h3 class="team-card__name">Ana Mendes</h3>
+            <p class="team-card__role">Experiência do usuário</p>
+            <p class="team-card__bio">Personagem fictícia usada para apresentar um perfil de equipe no layout.</p>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-card__avatar">LP</div>
+            <h3 class="team-card__name">Lucas Prado</h3>
+            <p class="team-card__role">Marketing & Growth</p>
+            <p class="team-card__bio">Estrategista de crescimento com foco em aquisição orgânica e parcerias estratégicas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section">
+      <div class="cta-section__glow"></div>
+      <div class="container">
+        <div class="cta-section__content reveal reveal--scale">
+          <h2 class="cta-section__title">Pronto para fazer parte<br />da nossa história?</h2>
+          <p class="cta-section__text">Junte-se a mais de 1.200 empreendedores que já estão crescendo com nossas landing pages.</p>
+          <div class="cta-section__actions">
+            <a href="../index.html#pricing" class="btn btn--gradient btn--lg">Ver Planos →</a>
+            <a href="contato.html" class="btn btn--ghost btn--lg">Falar Conosco</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__bottom" style="border-top: none; padding-top: 0;">
+        <p class="footer__copyright">&copy; 2026 LandingPage Store. Todos os direitos reservados.</p>
+        <div class="footer__bottom-links">
+          <a href="../index.html" class="footer__bottom-link">Início</a>
+          <a href="contato.html" class="footer__bottom-link">Contato</a>
+          <a href="404.html" class="footer__bottom-link">Ajuda</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/particles.js" defer></script>
+  <script src="../assets/js/chatbot.js" defer></script>
+  <script type="module" src="../assets/js/main.js" defer></script>
+
+  <!--End of Tawk.to Script-->
+</body>
+</html>

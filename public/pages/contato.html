@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Demonstração local de formulário e FAQ da LandingPage Store." />
+  <title>Contato — LandingPage Store</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2300d4aa'/><text y='75' font-size='65' text-anchor='middle' x='50' font-family='system-ui'>⚡</text></svg>" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/chatbot.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" />
+
+  <style>
+    .contact-hero {
+      padding: calc(var(--header-height) + var(--space-16)) 0 var(--space-20);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-hero__glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center top, rgba(124,58,237,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .contact-hero h1 { margin-bottom: var(--space-4); }
+    .contact-hero p { font-size: var(--font-size-lg); max-width: 55ch; margin: 0 auto; }
+
+    /* Layout de contato: form + info */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: var(--space-12);
+      align-items: start;
+    }
+
+    /* Cards de informação */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .contact-info-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+      transition: all var(--transition-base);
+    }
+    .contact-info-card:hover {
+      border-color: var(--color-border-hover);
+      transform: translateX(4px);
+    }
+    .contact-info-card__icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary-glow);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-info-card__label {
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-1);
+    }
+    .contact-info-card__value {
+      font-size: var(--font-size-base);
+      color: var(--color-white);
+      font-weight: 600;
+      max-width: unset;
+    }
+    .contact-info-card__sub {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      max-width: unset;
+    }
+
+    /* FAQ */
+    .faq-item {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color var(--transition-fast);
+    }
+    .faq-item:hover { border-color: var(--color-border-hover); }
+    .faq-question {
+      width: 100%;
+      background: var(--color-surface);
+      border: none;
+      padding: var(--space-5) var(--space-6);
+      color: var(--color-white);
+      font-size: var(--font-size-base);
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+      font-family: inherit;
+      transition: background var(--transition-fast);
+    }
+    .faq-question:hover { background: var(--color-surface-2); }
+    .faq-question[aria-expanded="true"] { color: var(--color-primary); }
+    .faq-arrow {
+      font-size: var(--font-size-lg);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+    .faq-question[aria-expanded="true"] .faq-arrow {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      background: var(--color-surface);
+    }
+    .faq-answer.is-open {
+      max-height: 300px;
+      padding: 0 var(--space-6) var(--space-5);
+    }
+    .faq-answer p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-4);
+      max-width: unset;
+    }
+
+    .faq-grid { display: flex; flex-direction: column; gap: var(--space-3); }
+
+    /* Form card */
+    .form-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+    }
+    .form-card__title {
+      font-size: var(--font-size-2xl);
+      font-weight: 800;
+      color: var(--color-white);
+      margin-bottom: var(--space-2);
+    }
+    .form-card__subtitle {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-8);
+      max-width: unset;
+    }
+
+    @media (max-width: 768px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
+
+  <!-- NAVBAR -->
+  <header role="banner">
+    <nav class="navbar header-animate" aria-label="Navegação principal">
+      <div class="container">
+        <div class="navbar__inner">
+          <a href="../index.html" class="navbar__logo" aria-label="LandingPage Store — Início">
+            <div class="navbar__logo-icon">⚡</div>
+            <span class="navbar__logo-text">Landing<span>Store</span></span>
+          </a>
+          <ul class="navbar__menu" role="list">
+            <li><a href="../index.html"          class="navbar__link">Início</a></li>
+            <li><a href="../index.html#features" class="navbar__link">Recursos</a></li>
+            <li><a href="../index.html#pricing"  class="navbar__link">Planos</a></li>
+            <li><a href="sobre.html"             class="navbar__link">Sobre</a></li>
+            <li><a href="contato.html"           class="navbar__link active" aria-current="page">Contato</a></li>
+          </ul>
+          <div class="navbar__cta">
+            <a href="../index.html#pricing" class="btn btn--primary btn--sm">Ver Planos →</a>
+          </div>
+          <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <span class="navbar__toggle-line"></span>
+            <span class="navbar__toggle-line"></span>
+            <span class="navbar__toggle-line"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="mobile-nav__overlay" id="mobile-overlay"></div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menu mobile">
+    <a href="../index.html"  class="mobile-nav__link">🏠 Início</a>
+    <a href="sobre.html"     class="mobile-nav__link">👥 Sobre Nós</a>
+    <a href="servicos.html"  class="mobile-nav__link">🛠️ Serviços</a>
+    <a href="contato.html"   class="mobile-nav__link active">📩 Contato</a>
+    <div class="mobile-nav__cta">
+      <a href="../index.html#pricing" class="btn btn--gradient" style="width:100%;justify-content:center;">Ver Planos →</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="contact-hero">
+      <div class="contact-hero__glow"></div>
+      <div class="container">
+        <div class="hero-badge-animate">
+          <span class="badge"><span class="dot"></span>Fale Conosco</span>
+        </div>
+        <h1 class="hero-title-animate">Como podemos<br /><span class="shimmer-text">te ajudar?</span></h1>
+        <p class="hero-subtitle-animate">Esta página demonstra um formulário e um FAQ. Use dados fictícios: não há envio nem atendimento real.</p>
+      </div>
+    </section>
+
+    <!-- CONTATO LAYOUT -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- Formulário -->
+          <div class="form-card reveal">
+            <h2 class="form-card__title">Envie uma mensagem</h2>
+            <p class="form-card__subtitle">Os campos são processados somente nesta página e descartados ao concluir a simulação.</p>
+
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label for="nome" class="form-label">Seu nome *</label>
+                <input
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  class="form-input"
+                  placeholder="Ex: Maria Silva"
+                  required
+                  autocomplete="name"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">E-mail *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="seu@email.com"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="assunto" class="form-label">Assunto</label>
+                <select id="assunto" name="assunto" class="form-select">
+                  <option value="">Selecione o assunto</option>
+                  <option value="demo">Teste da demonstração</option>
+                  <option value="interface">Interface e navegação</option>
+                  <option value="parceria">Parceria</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="mensagem" class="form-label">Mensagem *</label>
+                <textarea
+                  id="mensagem"
+                  name="mensagem"
+                  class="form-textarea"
+                  placeholder="Descreva sua dúvida ou pedido com o máximo de detalhes..."
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--gradient" style="width: 100%;">
+                Simular envio local →
+              </button>
+              <div id="contact-form-message" class="form-message" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <!-- Informações de contato -->
+          <div class="contact-info reveal reveal--right">
+
+            <div class="contact-info-card" id="email">
+              <div class="contact-info-card__icon" aria-hidden="true">📧</div>
+              <div>
+                <p class="contact-info-card__label">Formulário</p>
+                <p class="contact-info-card__value">Demonstração local</p>
+                <p class="contact-info-card__sub">Nenhuma mensagem é enviada</p>
+              </div>
+            </div>
+
+            <div class="contact-info-card" id="whatsapp">
+              <div class="contact-info-card__icon" aria-hidden="true">💬</div>
+              <div>
+                <p class="contact-info-card__label">Dados</p>
+                <p class="contact-info-card__value">Use informações fictícias</p>
+                <p class="contact-info-card__sub">Sem backend ou integração externa</p>
+              </div>
+            </div>
+
+            <div class="contact-info-card" id="instagram">
+              <div class="contact-info-card__icon" aria-hidden="true">📸</div>
+              <div>
+                <p class="contact-info-card__label">Persistência</p>
+                <p class="contact-info-card__value">Somente no navegador</p>
+                <p class="contact-info-card__sub">Pode ser limpa nas configurações</p>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-info-card__icon" aria-hidden="true">🕐</div>
+              <div>
+                <p class="contact-info-card__label">Disponibilidade</p>
+                <p class="contact-info-card__value">Interface demonstrativa</p>
+                <p class="contact-info-card__sub">Sem atendimento humano associado</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" style="background: var(--color-bg-secondary);" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="badge"><span class="dot"></span>FAQ</span>
+          <h2 id="faq-heading">Perguntas frequentes</h2>
+          <div class="divider"></div>
+        </div>
+
+        <div class="faq-grid" style="max-width: 760px; margin: 0 auto;">
+
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-1">
+              Este site realiza compras?
+              <span class="faq-arrow" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-1" class="faq-answer" role="region">
+              <p>Não. Planos, preços e checkout são elementos fictícios para demonstrar um fluxo de interface. Não há pagamento ou entrega de produto.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-2">
+              Preciso saber programar para usar os templates?
+              <span class="faq-arrow" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-2" class="faq-answer" role="region">
+              <p>Não! Nossos templates são feitos para quem não tem conhecimento técnico. Basta editar os textos, trocar as imagens e publicar. Temos um guia passo a passo para te ajudar.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-3">
+              Os templates funcionam em qualquer hospedagem?
+              <span class="faq-arrow" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-3" class="faq-answer" role="region">
+              <p>Sim! Como são arquivos HTML, CSS e JavaScript puro, funcionam em qualquer hospedagem web, incluindo GitHub Pages, Vercel, Netlify e hospedagem compartilhada.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-4">
+              Posso usar um template em mais de um site?
+              <span class="faq-arrow" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-4" class="faq-answer" role="region">
+              <p>Cada licença dá direito ao uso em 1 projeto/domínio. Para múltiplos projetos, você precisa de licenças adicionais. Entre em contato para condições especiais.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-5">
+              O formulário envia minha mensagem?
+              <span class="faq-arrow" aria-hidden="true">+</span>
+            </button>
+            <div id="faq-5" class="faq-answer" role="region">
+              <p>Não. O botão apenas simula a validação no navegador; nenhum dado é enviado ou armazenado em servidor.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__bottom" style="border-top: none; padding-top: 0;">
+        <p class="footer__copyright">&copy; 2026 LandingPage Store. Todos os direitos reservados.</p>
+        <div class="footer__bottom-links">
+          <a href="../index.html" class="footer__bottom-link">Início</a>
+          <a href="sobre.html" class="footer__bottom-link">Sobre</a>
+          <a href="servicos.html" class="footer__bottom-link">Serviços</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/chatbot.js" defer></script>
+  <script type="module" src="../assets/js/main.js" defer></script>
+
+  <!--End of Tawk.to Script-->
+
+  <!-- FAQ Accordion Script (inline pois é simples e específico desta página) -->
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        const answerId = btn.getAttribute('aria-controls');
+        const answer = document.getElementById(answerId);
+
+        // Fecha todos
+        document.querySelectorAll('.faq-question').forEach(b => {
+          b.setAttribute('aria-expanded', 'false');
+          document.getElementById(b.getAttribute('aria-controls')).classList.remove('is-open');
+        });
+
+        // Abre clicado (se estava fechado)
+        if (!isOpen) {
+          btn.setAttribute('aria-expanded', 'true');
+          answer.classList.add('is-open');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

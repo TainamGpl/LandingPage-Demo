@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore nossos templates profissionais de landing pages. Filtrados por categoria, prontos para lançar e otimizados para conversão." />
+  <title>Templates — LandingPage Store</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2300d4aa'/><text y='75' font-size='65' text-anchor='middle' x='50' font-family='system-ui'>⚡</text></svg>" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+  <link rel="stylesheet" href="../assets/css/chatbot.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" />
+
+  <style>
+    .services-hero {
+      padding: calc(var(--header-height) + var(--space-16)) 0 var(--space-20);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--color-bg);
+    }
+    .services-hero__glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center top, rgba(0,212,170,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Filtros de categoria */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      justify-content: center;
+      margin-bottom: var(--space-12);
+    }
+    .filter-btn {
+      padding: var(--space-2) var(--space-5);
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--color-border);
+      background: transparent;
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--color-primary-glow);
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    /* Grid de templates */
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-6);
+    }
+
+    .template-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition-bounce);
+      cursor: pointer;
+    }
+    .template-card:hover {
+      border-color: var(--color-border-hover);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-primary);
+    }
+
+    /* Preview visual do template */
+    .template-card__preview {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .template-card__category-tag {
+      position: absolute;
+      top: var(--space-3);
+      left: var(--space-3);
+      background: rgba(0,0,0,0.7);
+      color: var(--color-primary);
+      border: 1px solid rgba(0,212,170,0.3);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      padding: 2px var(--space-3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      backdrop-filter: blur(8px);
+    }
+    .template-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+    .template-card:hover .template-card__overlay {
+      opacity: 1;
+    }
+
+    .template-card__body {
+      padding: var(--space-5) var(--space-6);
+    }
+    .template-card__name {
+      font-size: var(--font-size-base);
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: var(--space-1);
+    }
+    .template-card__desc {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+      max-width: unset;
+    }
+    .template-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .template-card__price {
+      font-size: var(--font-size-lg);
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+    .template-card__price-note {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-faint);
+      max-width: unset;
+    }
+
+    /* Estados para filtro JS */
+    .template-card[data-hidden="true"] {
+      display: none;
+    }
+
+    /* Stats de categoria */
+    .category-stats {
+      display: flex;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: var(--space-8);
+    }
+    .category-stat {
+      text-align: center;
+    }
+    .category-stat__num {
+      display: block;
+      font-size: var(--font-size-2xl);
+      font-weight: 900;
+      color: var(--color-primary);
+    }
+    .category-stat__label {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      max-width: unset;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
+
+  <!-- NAVBAR -->
+  <header role="banner">
+    <nav class="navbar header-animate" aria-label="Navegação principal">
+      <div class="container">
+        <div class="navbar__inner">
+          <a href="../index.html" class="navbar__logo" aria-label="LandingPage Store — Início">
+            <div class="navbar__logo-icon">⚡</div>
+            <span class="navbar__logo-text">Landing<span>Store</span></span>
+          </a>
+          <ul class="navbar__menu" role="list">
+            <li><a href="../index.html"          class="navbar__link">Início</a></li>
+            <li><a href="../index.html#features" class="navbar__link">Recursos</a></li>
+            <li><a href="../index.html#pricing"  class="navbar__link">Planos</a></li>
+            <li><a href="sobre.html"             class="navbar__link">Sobre</a></li>
+            <li><a href="contato.html"           class="navbar__link">Contato</a></li>
+          </ul>
+          <div class="navbar__cta">
+            <a href="../index.html#pricing" class="btn btn--primary btn--sm">Ver Planos →</a>
+          </div>
+          <button class="navbar__toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+            <span class="navbar__toggle-line"></span>
+            <span class="navbar__toggle-line"></span>
+            <span class="navbar__toggle-line"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="mobile-nav__overlay" id="mobile-overlay"></div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menu mobile">
+    <a href="../index.html" class="mobile-nav__link">🏠 Início</a>
+    <a href="sobre.html"    class="mobile-nav__link">👥 Sobre Nós</a>
+    <a href="servicos.html" class="mobile-nav__link active">🛠️ Serviços</a>
+    <a href="contato.html"  class="mobile-nav__link">📩 Contato</a>
+    <div class="mobile-nav__cta">
+      <a href="../index.html#pricing" class="btn btn--gradient" style="width:100%;justify-content:center;">Começar Agora →</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="services-hero">
+      <div class="services-hero__glow"></div>
+      <div class="container">
+        <div class="hero-badge-animate">
+          <span class="badge"><span class="dot"></span>45+ Templates</span>
+        </div>
+        <h1 class="hero-title-animate">
+          Encontre o template<br /><span class="shimmer-text">perfeito para você</span>
+        </h1>
+        <p class="hero-subtitle-animate" style="margin-bottom: 2rem;">
+          Designs profissionais para todo tipo de negócio. Prontos para lançar em minutos.
+        </p>
+
+        <!-- Mini stats -->
+        <div class="category-stats hero-cta-animate">
+          <div class="category-stat">
+            <span class="category-stat__num">45+</span>
+            <p class="category-stat__label">Templates</p>
+          </div>
+          <div class="category-stat">
+            <span class="category-stat__num">8</span>
+            <p class="category-stat__label">Categorias</p>
+          </div>
+          <div class="category-stat">
+            <span class="category-stat__num">1.200+</span>
+            <p class="category-stat__label">Clientes</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEMPLATES -->
+    <section class="section" id="templates">
+      <div class="container">
+
+        <!-- Filtros -->
+        <div class="filter-bar" role="group" aria-label="Filtrar templates por categoria">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="vendas">Vendas</button>
+          <button class="filter-btn" data-filter="saude">Saúde</button>
+          <button class="filter-btn" data-filter="educacao">Educação</button>
+          <button class="filter-btn" data-filter="servicos">Serviços</button>
+          <button class="filter-btn" data-filter="produto">Produto</button>
+          <button class="filter-btn" data-filter="evento">Evento</button>
+        </div>
+
+        <!-- Grid de templates -->
+        <div class="templates-grid" id="templates-grid">
+
+          <article class="template-card reveal" data-category="vendas">
+            <div class="template-card__preview" style="background: linear-gradient(135deg, #001a0d, #003d1a);">
+              🛒
+              <span class="template-card__category-tag">Vendas</span>
+              <div class="template-card__overlay">
+                <a href="contato.html" class="btn btn--primary btn--sm">Ver Detalhes</a>
+              </div>
+            </div>
+            <div class="template-card__body">
+              <h3 class="template-card__name">SalesPro</h3>
+              <p class="template-card__desc">Template focado em conversão, ideal para lançamentos e produtos digitais.</p>
+              <div class="template-card__footer">
+                <div>
+                  <p class="template-card__price">R$ 49,90</p>
+                  <p class="template-card__price-note">Licença única</p>
+                </div>
+                <a href="../index.html#pricing" class="btn btn--secondary btn--sm">Simular</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="template-card reveal" data-category="saude">
+            <div class="template-card__preview" style="background: linear-gradient(135deg, #0d001a, #1a0033);">
+              💊
+              <span class="template-card__category-tag">Saúde</span>
+              <div class="template-card__overlay">
+                <a href="contato.html" class="btn btn--primary btn--sm">Ver Detalhes</a>
+              </div>
+            </div>
+            <div class="template-card__body">
+              <h3 class="template-card__name">HealthFlow</h3>
+              <p class="template-card__desc">Perfeito para clínicas, consultórios e profissionais da área da saúde.</p>
+              <div class="template-card__footer">
+                <div>
+                  <p class="template-card__price">R$ 49,90</p>
+                  <p class="template-card__price-note">Licença única</p>
+                </div>
+                <a href="../index.html#pricing" class="btn btn--secondary btn--sm">Simular</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="template-card reveal" data-category="educacao">
+            <div class="template-card__preview" style="background: linear-gradient(135deg, #001a1a, #00333d);">
+              🎓
+              <span class="template-card__category-tag">Educação</span>
+              <div class="template-card__overlay">
+                <a href="contato.html" class="btn btn--primary btn--sm">Ver Detalhes</a>
+              </div>
+            </div>
+            <div class="template-card__body">
+              <h3 class="template-card__name">EduLaunch</h3>
+              <p class="template-card__desc">Ideal para lançamento de cursos online, mentorias e ebooks.</p>
+              <div class="template-card__footer">
+                <div>
+                  <p class="template-card__price">R$ 49,90</p>
+                  <p class="template-card__price-note">Licença única</p>
+                </div>
+                <a href="../index.html#pricing" class="btn btn--secondary btn--sm">Simular</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="template-card reveal" data-category="servicos">
+            <div class="template-card__preview" style="background: linear-gradient(135deg, #0d0d1a, #1a1a40);">
+              🔧
+              <span class="template-card__category-tag">Serviços</span>
+              <div class="template-card__overlay">
+                <a href="contato.html" class="btn btn--primary btn--sm">Ver Detalhes</a>
+              </div>
+            </div>
+            <div class="template-card__body">
+              <h3 class="template-card__name">ServiceHub</h3>
+              <p class="template-card__desc">Para freelancers, agências e prestadores de serviços em geral.</p>
+              <div class="template-card__footer">
+                <div>
+                  <p class="template-card__price">R$ 49,90</p>
+                  <p class="template-card__price-note">Licença única</p>
+                </div>
+                <a href="../index.html#pricing" class="btn btn--secondary btn--sm">Simular</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="template-card reveal" data-category="produto">
+            <div class="template-card__preview" style="background: linear-gradient(135deg, #1a0d00, #3d1f00);">
+              📦
+              <span class="template-card__category-tag">Produto</span>
+              <div class="template-card__overlay">
+                <a href="contato.html" class="btn btn--primary btn--sm">Ver Detalhes</a>
+              </div>
+            </div>
+            <div class="template-card__body">
+              <h3 class="template-card__name">ProductLaunch</h3>
+              <p class="template-card__desc">Lançamento de produto físico ou digital com seção de features e depoimentos.</p>
+              <div class="template-card__footer">
+                <div>
+                  <p class="template-card__price">R$ 49,90</p>
+                  <p class="template-card__price-note">Licença única</p>
+                </div>
+                <a href="../index.html#pricing" class="btn btn--secondary btn--sm">Simular</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="template-card reveal" data-category="evento">
+            <div class="template-card__preview" style="background: linear-gradient(135deg, #1a001a, #330033);">
+              🎉
+              <span class="template-card__category-tag">Evento</span>
+              <div class="template-card__overlay">
+                <a href="contato.html" class="btn btn--primary btn--sm">Ver Detalhes</a>
+              </div>
+            </div>
+            <div class="template-card__body">
+              <h3 class="template-card__name">EventPro</h3>
+              <p class="template-card__desc">Perfeito para divulgar webinars, workshops, congressos e eventos presenciais.</p>
+              <div class="template-card__footer">
+                <div>
+                  <p class="template-card__price">R$ 49,90</p>
+                  <p class="template-card__price-note">Licença única</p>
+                </div>
+                <a href="../index.html#pricing" class="btn btn--secondary btn--sm">Simular</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- CTA para ver todos -->
+        <div style="text-align: center; margin-top: var(--space-12);">
+          <p style="color: var(--color-text-muted); margin-bottom: var(--space-4);">
+            Mais de 40 outros templates disponíveis nos planos Profissional e Empresarial.
+          </p>
+          <a href="../index.html#pricing" class="btn btn--gradient btn--lg">
+            Ver Todos os Planos →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section">
+      <div class="cta-section__glow"></div>
+      <div class="container">
+        <div class="cta-section__content reveal reveal--scale">
+          <h2 class="cta-section__title">Não encontrou<br />o que procurava?</h2>
+          <p class="cta-section__text">Entre em contato — podemos criar um template personalizado para o seu negócio.</p>
+          <div class="cta-section__actions">
+            <a href="contato.html" class="btn btn--gradient btn--lg">Solicitar Template →</a>
+            <a href="../index.html#pricing" class="btn btn--ghost btn--lg">Ver Planos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__bottom" style="border-top: none; padding-top: 0;">
+        <p class="footer__copyright">&copy; 2026 LandingPage Store. Todos os direitos reservados.</p>
+        <div class="footer__bottom-links">
+          <a href="../index.html" class="footer__bottom-link">Início</a>
+          <a href="contato.html" class="footer__bottom-link">Contato</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/chatbot.js" defer></script>
+  <script type="module" src="../assets/js/main.js" defer></script>
+
+  <!--End of Tawk.to Script-->
+
+  <!-- Filtro de templates (inline, específico desta página) -->
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.template-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        // Atualiza botão ativo
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filtra cards com animação
+        cards.forEach(card => {
+          const category = card.dataset.category;
+          const show = filter === 'all' || category === filter;
+
+          if (show) {
+            card.removeAttribute('data-hidden');
+            card.style.animation = 'fadeInUp 0.4s ease both';
+          } else {
+            card.setAttribute('data-hidden', 'true');
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
